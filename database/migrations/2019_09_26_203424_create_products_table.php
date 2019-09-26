@@ -15,6 +15,13 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->boolean('status');
+            $table->float('base_price', 6, 2);
+            $table->string('image');
+            $table->text('description');
+            $table->unsignedTinyInteger('rating');
+            $table->integer('number_of_ratings');
             $table->timestamps();
         });
     }
