@@ -1,5 +1,6 @@
 <?php
 
+use App\Product;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +12,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,3 +20,8 @@ Route::get('/', function () {
 Auth::routes(['reset' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/insert', function() {
+   Product::create(['name' => "iPhone 6", 'sku' => 'KH1564', 'status' => 1, 'base_price' => 159.9488, 'image' => 'http://imgur.com/fbggfdjnfrdse', 'description' => 'Old, but reliable phone.']);
+
+});
