@@ -1,6 +1,6 @@
 <?php
 
-use App\Product;
+use App\Review;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,7 +21,11 @@ Auth::routes(['reset' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/insert', function() {
-   Product::create(['name' => "iPhone 6", 'sku' => 'KH1564', 'status' => 1, 'base_price' => 159.9488, 'image' => 'http://imgur.com/fbggfdjnfrdse', 'description' => 'Old, but reliable phone.']);
+Route::get('/create', function() {
+    Review::create(['review_content' => "test" . rand(1,10), 'product' => rand(55, 666)]);
+});
 
+Route::get('/delete', function() {
+//    Review::where('id', 1)->delete();
+    Review::destroy([2, 4, 6, 8]);
 });
