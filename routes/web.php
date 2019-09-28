@@ -18,6 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 //Route::get('/admin', function () {
 //   return view('admin_panel');
 //});
@@ -33,43 +34,43 @@ Route::get('/admin', 'AdminController@index')->name('admin');
 //    Review::create(['review_content' => "antras antras", 'product_id' => 2]);
 //});
 
-//Route::get('/rev/{product}', function($product) {
-//   return Product::find($product)->review->review_content;
+//Route::get('/rev/{products}', function($products) {
+//   return Product::find($products)->review->review_content;
 //});
 //
-//Route::get('/product/{rev}', function($rev) {
-//    return Review::find($rev)->product->name;
+//Route::get('/products/{rev}', function($rev) {
+//    return Review::find($rev)->products->name;
 //});
 
-//Route::get('/reviews/{product}', function($product) {
-//    $reviews = Product::find($product)->reviews;
+//Route::get('/reviews/{products}', function($products) {
+//    $reviews = Product::find($products)->reviews;
 //
 //    foreach ($reviews as $review) {
 //        echo $review->review_content . '<br>';
 //    }
 //});
 
-Route::get('/create/{id}', function($id) {
-    Product::findOrfail($id)->reviews()->save(new Review(['title' => 'meh', 'content' => 'it\'s good but it\'s really expensive']));
-});
+//Route::get('/create/{id}', function($id) {
+//    Product::findOrfail($id)->reviews()->save(new Review(['title' => 'meh', 'content' => 'it\'s good but it\'s really expensive']));
+//});
+//
+//Route::get('/read/{id}' ,function($id) {
+//   $products =Product::findOrfail($id);
+//   foreach ($products->reviews as $review) {
+//       echo $review->title . " : " . $review->content . "<br>";
+//   }
+//});
+//
+//Route::get('/update/{id}', function($id) {
+//    $products = Product::findOrfail($id);
+//
+//    $products->reviews()->whereId(1)->update(['title' => 'it\'s an ok phone']);
+//});
+//
+//Route::get('/delete', function() {
+//   Product::findOrfail(4)->delete();
+//});
 
-Route::get('/read/{id}' ,function($id) {
-   $product =Product::findOrfail($id);
-   foreach ($product->reviews as $review) {
-       echo $review->title . " : " . $review->content . "<br>";
-   }
-});
 
-Route::get('/update/{id}', function($id) {
-    $product = Product::findOrfail($id);
-
-    $product->reviews()->whereId(1)->update(['title' => 'it\'s an ok phone']);
-});
-
-Route::get('/delete', function() {
-   Product::findOrfail(4)->delete();
-});
-
-
-Route::resource('/products', 'ProductController');
-Route::resource('/reviews', 'ReviewController');
+Route::resource('/products', 'ProductsController');
+Route::resource('/reviews', 'ReviewsController');
