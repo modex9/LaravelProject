@@ -1,6 +1,7 @@
 <?php
 
 use App\Review;
+use App\Product;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,11 +22,47 @@ Auth::routes(['reset' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/create', function() {
-    Review::create(['review_content' => "test" . rand(1,10), 'product' => rand(55, 666)]);
+//Route::get('create_pr', function() {
+//    Product::create(['name' => 'some', 'sku' => 'JH516', 'base_price' => 199.588]);
+//});
+//
+//Route::get('/create_rev', function() {
+//    Review::create(['review_content' => "antras antras", 'product_id' => 2]);
+//});
+
+//Route::get('/rev/{product}', function($product) {
+//   return Product::find($product)->review->review_content;
+//});
+//
+//Route::get('/product/{rev}', function($rev) {
+//    return Review::find($rev)->product->name;
+//});
+
+//Route::get('/reviews/{product}', function($product) {
+//    $reviews = Product::find($product)->reviews;
+//
+//    foreach ($reviews as $review) {
+//        echo $review->review_content . '<br>';
+//    }
+//});
+
+Route::get('/create/{id}', function($id) {
+    Product::findOrfail($id)->reviews()->save(new Review(['title' => 'meh', 'content' => 'it\'s good but it\'s really expensive']));
+});
+
+Route::get('/read/{id}' ,function($id) {
+   $product =Product::findOrfail($id);
+   foreach ($product->reviews as $review) {
+       echo $review->title . " : " . $review->content . "<br>";
+   }
+});
+
+Route::get('/update/{id}', function($id) {
+    $product = Product::findOrfail($id);
+
+    $product->reviews()->whereId(1)->update(['title' => 'it\'s an ok phone']);
 });
 
 Route::get('/delete', function() {
-//    Review::where('id', 1)->delete();
-    Review::destroy([2, 4, 6, 8]);
+   Product::findOrfail(4)->delete();
 });

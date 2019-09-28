@@ -17,11 +17,11 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('sku');
-            $table->boolean('status');
+            $table->boolean('status')->default(true);
             $table->float('base_price', 6, 2);
             $table->integer('individual_discount')->default(0);
-            $table->string('image');
-            $table->text('description');
+            $table->string('image')->nullable();
+            $table->text('description')->nullable();
             $table->unsignedTinyInteger('rating')->default(0);
             $table->integer('number_of_ratings')->default(0);
             $table->timestamps();
@@ -37,4 +37,5 @@ class CreateProductsTable extends Migration
     {
         Schema::dropIfExists('products');
     }
+
 }
