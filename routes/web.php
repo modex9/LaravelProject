@@ -18,9 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Route::get('/admin', function () {
+//   return view('admin_panel');
+//});
 Auth::routes(['reset' => false]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'AdminController@index')->name('admin');
 
 //Route::get('create_pr', function() {
 //    Product::create(['name' => 'some', 'sku' => 'JH516', 'base_price' => 199.588]);
@@ -67,4 +70,6 @@ Route::get('/delete', function() {
    Product::findOrfail(4)->delete();
 });
 
+
 Route::resource('/products', 'ProductController');
+Route::resource('/reviews', 'ReviewController');
