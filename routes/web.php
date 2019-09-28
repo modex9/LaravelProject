@@ -66,3 +66,5 @@ Route::get('/update/{id}', function($id) {
 Route::get('/delete', function() {
    Product::findOrfail(4)->delete();
 });
+
+Route::resource('/products', 'ProductController');
