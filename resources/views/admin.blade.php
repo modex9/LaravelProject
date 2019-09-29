@@ -22,7 +22,7 @@
 {{--</div>--}}
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
-        <a>Configuration</a>
+        <a href="{{ route('options.index') }}">Configuration</a>
         <a href="{{ route('products.index') }}">Products</a>
     </div>
     {{--<div>Options</div>--}}

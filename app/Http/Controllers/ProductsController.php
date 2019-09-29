@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
 
 class ProductsController extends Controller
 {
@@ -39,7 +40,14 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+        $product = $request->all();
+        if($product['status_check'] == 'enabled')
+            $product['status_check'] = true;
+        else
+            $product['status_check'] = false;
+
+        Product::create($product);
+        return redirect('products');
     }
 
     /**

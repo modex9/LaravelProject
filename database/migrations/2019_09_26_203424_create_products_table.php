@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('sku');
-            $table->boolean('status')->default(true);
+            $table->boolean('status')->default(false);
             $table->float('base_price', 6, 2);
             $table->integer('individual_discount')->default(0);
             $table->string('image')->nullable();

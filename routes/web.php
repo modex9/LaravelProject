@@ -72,5 +72,8 @@ Route::get('/admin', 'AdminController@index')->name('admin');
 //});
 
 
-Route::resource('/products', 'ProductsController');
-Route::resource('/reviews', 'ReviewsController');
+//Route::resource('/products', 'ProductsController');
+//Route::resource('/reviews', 'ReviewsController');
+
+Route::resources(['products' => 'ProductsController', 'reviews' => 'ReviewsController',
+'options' => 'OptionsController']);
