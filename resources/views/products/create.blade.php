@@ -26,7 +26,7 @@
                             <div class="form-group row">
                                 <label for="status" class="col-md-4 col-form-label text-md-right">{{ __('Product status') }}</label>
                                 <div class="col-md-6">
-                                    <select class="custom-select" name="status_check">
+                                    <select class="custom-select" name='status'>
                                         <option value="enabled">enabled</option>
                                         <option value="disabled">disabled</option>
                                     </select>

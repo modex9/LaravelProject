@@ -19,7 +19,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return view('product');
+        $products = Product::all();
+        return view('product', compact('products'));
     }
 
     /**
@@ -41,10 +42,10 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         $product = $request->all();
-        if($product['status_check'] == 'enabled')
-            $product['status_check'] = true;
+        if($product['status'] == 'enabled')
+            $product['status'] = true;
         else
-            $product['status_check'] = false;
+            $product['status'] = false;
 
         Product::create($product);
         return redirect('products');
@@ -69,7 +70,8 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -81,7 +83,13 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+        $updated_product = $request->all();
+        if($updated_product['status'] == 'enabled')
+            $updated_product['status'] = true;
+        else $updated_product['status'] = false;
+        $product->update($updated_product);
+        return redirect('products');
     }
 
     /**
@@ -92,6 +100,8 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+//        Product::find($ids)->delete();
+//        return redirect('products');
+        return $id;
     }
 }
