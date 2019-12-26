@@ -12,6 +12,15 @@
                             @csrf
                             <input type="hidden" name="_method" value="put"></input>
                             <div class="form-group row">
+                                <label for="currency" class="col-md-4 col-form-label text-md-right">{{ 'Currency' }}</label>
+                                <div class="col-md-6">
+                                    <select name="currency" class="custom-select">
+                                    <option value="€">Euro (€)</option>
+                                    <option value="$">Dollar ($)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="tax_rate" class="col-md-4 col-form-label text-md-right">{{ __('Tax rate (%)') }}</label>
                                 <div class="col-md-6">
                                     <input type="number" value={{$options->tax_rate}} name="tax_rate" class="form-control" autofocus required></input>

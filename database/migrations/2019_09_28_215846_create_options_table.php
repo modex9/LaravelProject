@@ -17,6 +17,7 @@ class CreateOptionsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('tax_rate')->default(21);
             $table->boolean('tax_inc_flag')->default(false);
+            $table->string('currency')->default('euro');
             $table->integer('global_discount')->default(0);
             $table->boolean('global_discount_is_fixed')->default(false);
             $table->timestamps();

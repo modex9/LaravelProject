@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Options;
 
 class ProductsController extends Controller
 {
@@ -19,8 +20,9 @@ class ProductsController extends Controller
      */
     public function index()
     {
+        $options = Options::all()->first();
         $products = Product::all();
-        return view('product', compact('products'));
+        return view('products', compact(['products', 'options']));
     }
 
     /**
@@ -59,7 +61,8 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+        return view('products.show', compact('product'));
     }
 
     /**
@@ -100,8 +103,20 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-//        Product::find($ids)->delete();
-//        return redirect('products');
-        return $id;
+    }
+    
+    public function changeProductStatus(Request $request) {
+        $result = $request->all();
+        $product = Product::find($result['id']);
+        $product->status = !$product->status;
+        $product->save();
+        return response()->json(array('result'=> $product), 200);
+        
+    }
+    
+    public function deleteSelectedProducts(Request $request) {
+        $result = $request->all();
+        foreach($result['selectedProductsIds'] as $productId)
+            Product::find($productId)->delete();
     }
 }

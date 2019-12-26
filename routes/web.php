@@ -72,7 +72,9 @@ Route::get('/admin', 'AdminController@index')->name('admin');
 //});
 
 
-//Route::resource('/products', 'ProductsController');
+Route::post('/products/changestatus', 'ProductsController@changeProductStatus');
+Route::post('/products/deleteseveral', 'ProductsController@deleteSelectedProducts')->name('products.destroySelected');
+//Route::get('products/changeProductStatus', 'ProductsController@changeProductStatusGet');
 //Route::resource('/reviews', 'ReviewsController');
 
 Route::resources(['products' => 'ProductsController', 'reviews' => 'ReviewsController',

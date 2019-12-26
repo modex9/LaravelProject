@@ -11,7 +11,16 @@
                         <form method="POST" action="{{ route('options.store') }}">
                             @csrf
                             <div class="form-group row">
-                                <label for="tax_rate" class="col-md-4 col-form-label text-md-right">{{ __('Tax rate (%)') }}</label>
+                                <label for="currency" class="col-md-4 col-form-label text-md-right">{{ 'Currency' }}</label>
+                                <div class="col-md-6">
+                                    <select name="currency" class="custom-select">
+                                    <option value="€">Euro (€)</option>
+                                    <option value="$">Dollar ($)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="tax_rate" class="col-md-4 col-form-label text-md-right">{{ 'Tax rate (%)' }}</label>
                                 <div class="col-md-6">
                                     <input type="number" name="tax_rate" class="form-control" autofocus required></input>
                                 </div>

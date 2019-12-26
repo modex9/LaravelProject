@@ -2,13 +2,14 @@
 
 @section('content')
 @if($options)
-    <table class="table table-striped">
+    <table class="table table-striped" id="options-table">
         <thead>
         <tr>
             <th scope="col">Tax rate</th>
             <th scope="col">Tax inclusion flag</th>
             <th scope="col">Global discount</th>
             <th scope="col">Type of global discount</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -20,7 +21,7 @@
                     @endif
             </td>
             <td>{{$options->global_discount}}
-            @if($options->global_discount_is_fixed)  €
+            @if($options->global_discount_is_fixed)  {{$options->currency}}
                 @else %
                 @endif
             </td>
@@ -29,12 +30,14 @@
                 @else Percentage
                 @endif
             </td>
+            <td>
+                <a href="{{route('options.edit', $options->id)}}">Edit configuration</a>
+                @else
+                {{ "Catalogue configurations are not set." }}
+                {!! "<a href='$route_create'>Set configurations</a>" !!}
+                @endif
+            </td>
         </tr>
         </tbody>
     </table>
-    <a href="{{route('options.edit', $options->id)}}">Edit configuration</a>
-        @else
-            {{ "Catalogue configurations are not set." }}
-            {!! "<a href='$route'>Set configurations</a>" !!}
-        @endif
 @endsection
