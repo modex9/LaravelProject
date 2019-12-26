@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@if ($options)
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -63,3 +64,8 @@
         </div>
     </div>
 @endsection
+@else
+<script type="text/javascript">
+    window.location = "{{ url('/options') }}";
+</script>
+@endif
