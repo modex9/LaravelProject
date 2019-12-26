@@ -17,10 +17,18 @@
 
 </td>
 <td>
-    {{ $product->base_price.' '.$options->currency }}
+    @if ($options)
+        {{ $product->base_price.' '.$options->currency }}
+    @else
+        {{ $product->base_price }}
+    @endif
 </td>
 <td>
-    {{ $product->individual_discount.' '.$options->currency }}
+    @if ($options)
+        {{ $product->individual_discount.' '.$options->currency }}
+    @else
+        {{ $product->individual_discount }}
+    @endif
 </td>
 <td>
     <img src="{{ $product->image }}" alt="{{ $product->name }}" height="112" width="76"></img>
