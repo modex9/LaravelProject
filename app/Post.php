@@ -13,4 +13,8 @@ class Post extends Model
     protected function photos() {
         return $this->morphMany('App\Photo', 'photoable');
     }
+    
+    protected function tags() {
+        return $this->morphToMany('App\Tag', 'taggable');
+    }
 }

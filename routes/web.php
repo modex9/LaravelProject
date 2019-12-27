@@ -7,6 +7,9 @@ use App\Role;
 use App\Country;
 use App\Photo;
 use App\Post;
+use App\Video;
+use App\Tag;
+use App\Taggable;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -115,6 +118,31 @@ Route::get('/photos/user/{id}', function($id) {
     $photos = $user->photos;
     foreach($photos as $photo) {
         echo $user->username . " " . $photo->description . "<br>";
+    }
+});
+
+Route::get('/tags', function() {
+    $videos = Video::all();
+    $posts = Post::all();
+    $tags = Tag::all();
+    
+    foreach($videos as $video) {
+        echo $video->name;
+        echo $video->tags;
+        echo "<br>";
+    }
+    
+    foreach($posts as $post) {
+        echo $post->name;
+        echo $post->tags;
+        echo "<br>";
+    }
+    
+    foreach($tags as $tag) {
+        echo $tag->name;
+        echo $tag->videos;
+        echo $tag->posts;
+        echo "<br>";
     }
 });
 
