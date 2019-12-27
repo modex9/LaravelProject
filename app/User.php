@@ -10,6 +10,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -38,13 +39,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
-    protected function role() {
-        return $this->belongsTo('App\Role');
+    protected function roles() {
+        return $this->belongsToMany('App\Role');
     }
     
     public function isAdmin() {
-        if($this->role->name == 'admin')
-            return true;
+        foreach($this->roles as $role)
+            if($role->name == 'admin')
+                return true;
         return false;
     }
 }

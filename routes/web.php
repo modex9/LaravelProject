@@ -2,6 +2,8 @@
 
 use App\Review;
 use App\Product;
+use App\User;
+use App\Role;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -71,6 +73,13 @@ Route::get('/admin', 'AdminController@index')->name('admin');
 //   Product::findOrfail(4)->delete();
 //});
 
+Route::get('/whatever/{id}', function($id) {
+   $user = User::find($id);
+    $user_roles = $user->roles;
+    foreach($user_roles as $role) {
+        echo $user->username . ' '.$role->name . "<br>";
+    }
+});
 
 Route::post('/products/changestatus', 'ProductsController@changeProductStatus');
 Route::post('/products/deleteseveral', 'ProductsController@deleteSelectedProducts')->name('products.destroySelected');
