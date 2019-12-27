@@ -4,6 +4,7 @@ use App\Review;
 use App\Product;
 use App\User;
 use App\Role;
+use App\Country;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -78,6 +79,24 @@ Route::get('/whatever/{id}', function($id) {
     $user_roles = $user->roles;
     foreach($user_roles as $role) {
         echo $user->username . ' '.$role->name . "<br>";
+    }
+});
+
+
+Route::get('/country/{id}/users', function($id) {
+    $country = Country::find($id);
+    $country_users = $country->users;
+    foreach($country_users as $user) {
+        echo $country->name . " " . $user->username. "<br>";
+    }
+});
+
+
+Route::get('/country/{id}/roles',function($id) {
+   $country = Country::find($id);
+    $country_posts = $country->posts;
+    foreach($country_posts as $post) {
+        echo $country->name . " " .$post->user->username . " " . $post->content. "<br>";
     }
 });
 
