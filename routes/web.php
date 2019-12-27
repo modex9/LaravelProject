@@ -5,6 +5,8 @@ use App\Product;
 use App\User;
 use App\Role;
 use App\Country;
+use App\Photo;
+use App\Post;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -97,6 +99,22 @@ Route::get('/country/{id}/roles',function($id) {
     $country_posts = $country->posts;
     foreach($country_posts as $post) {
         echo $country->name . " " .$post->user->username . " " . $post->content. "<br>";
+    }
+});
+
+Route::get('/photos/post/{id}', function($id) {
+   $post = Post::find($id);
+    $photos = $post->photos;
+    foreach($photos as $photo) {
+        echo $post->content . " " . $photo->photoable . "<br>";
+    }
+});
+
+Route::get('/photos/user/{id}', function($id) {
+   $user = User::find($id);
+    $photos = $user->photos;
+    foreach($photos as $photo) {
+        echo $user->username . " " . $photo->description . "<br>";
     }
 });
 
